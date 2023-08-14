@@ -24,4 +24,6 @@ namespace TomatoHarvestAPI.DataAccess.Repository
         {
             _db.TbSoilMoistureSensorDatas.Update(obj);
         }
+        #endregion
     }
+}
