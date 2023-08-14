@@ -5,6 +5,10 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomatoHarvestAPI", "TomatoHarvestAPI\TomatoHarvestAPI.csproj", "{A9356646-E084-46C9-AE4D-ED0AB08E4F01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomatoHarvestAPI.Models", "TomatoHarvestAPI.Models\TomatoHarvestAPI.Models.csproj", "{4C55AD22-2B2A-425C-A6B4-7602E17098C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomatoHarvestAPI.DataAccess", "TomatoHarvestAPI.DataAccess\TomatoHarvestAPI.DataAccess.csproj", "{1ECB2750-732B-47C7-BFE1-7A3B393A0783}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{A9356646-E084-46C9-AE4D-ED0AB08E4F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9356646-E084-46C9-AE4D-ED0AB08E4F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9356646-E084-46C9-AE4D-ED0AB08E4F01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C55AD22-2B2A-425C-A6B4-7602E17098C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C55AD22-2B2A-425C-A6B4-7602E17098C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C55AD22-2B2A-425C-A6B4-7602E17098C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C55AD22-2B2A-425C-A6B4-7602E17098C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ECB2750-732B-47C7-BFE1-7A3B393A0783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ECB2750-732B-47C7-BFE1-7A3B393A0783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ECB2750-732B-47C7-BFE1-7A3B393A0783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ECB2750-732B-47C7-BFE1-7A3B393A0783}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
