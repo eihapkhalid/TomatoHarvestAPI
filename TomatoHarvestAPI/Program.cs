@@ -1,4 +1,7 @@
-
+using Microsoft.EntityFrameworkCore;
+using TomatoHarvestAPI.DataAccess.Data;
+using TomatoHarvestAPI.DataAccess.Repository.IRepository;
+using TomatoHarvestAPI.DataAccess.Repository;
 namespace TomatoHarvestAPI
 {
     public class Program
@@ -10,9 +13,15 @@ namespace TomatoHarvestAPI
             // Add services to the container.
 
             builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            #region DefaultConnection
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            #endregion
 
             var app = builder.Build();
 

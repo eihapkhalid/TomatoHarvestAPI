@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TomatoHarvestAPI.Models\TomatoHarvestAPI.Models.csproj" />
-    <ProjectReference Include="..\TomatoHarvestAPI\TomatoHarvestAPI.csproj" />
   </ItemGroup>
 
 </Project>
