@@ -9,7 +9,7 @@ namespace TomatoHarvestAPI.DataAccess.Repository.IRepository
     public interface IUnitOfWork
     {
         void Save();
-        public IDh22SensorDataRepository TbTbDh22SensorData { get; }
+        public IDh22SensorDataRepository TbDh22SensorData { get; }
         public ILdrSensorDataRepository TbLdrSensorData { get; }
         public ISoilMoistureSensorDataRepository TbSoilMoistureSensorData { get; }
 
