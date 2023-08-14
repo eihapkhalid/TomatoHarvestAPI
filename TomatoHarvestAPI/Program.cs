@@ -23,6 +23,10 @@ namespace TomatoHarvestAPI
                         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             #endregion
 
+            #region UnitOfWork
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            #endregion
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
