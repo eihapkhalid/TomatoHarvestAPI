@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TomatoHarvestAPI.DataAccess.Repository.IRepository;
 using TomatoHarvestAPI.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TomatoHarvestAPI.Controllers
 {
@@ -20,20 +21,28 @@ namespace TomatoHarvestAPI.Controllers
         #region Dh22SensorData
 
         #region PostDh22SensorData
-        [HttpPost("dh22")]
-        public IActionResult PostDh22SensorData([FromBody] TbDh22SensorData data, int dh22SensorDataId)
+        [HttpPost("PostDh22SensorData")]
+        public IActionResult PostDh22SensorData([FromBody] List<TbDh22SensorData> sensorDataList)
         {
-            if (data == null)
+            if (sensorDataList == null || sensorDataList.Count == 0)
             {
                 return BadRequest();
             }
 
-            var existingSensor = _unitOfWork.TbDh22SensorData.Get(s => s.Dh22SensorDataId == dh22SensorDataId);
-            if (existingSensor != null)
+            foreach (var data in sensorDataList)
             {
-                existingSensor.Temperature = data.Temperature;
-                existingSensor.Humidity = data.Humidity;
-                _unitOfWork.TbDh22SensorData.Update(existingSensor);
+                var existingSensor = _unitOfWork.TbDh22SensorData.Get(s => s.Dh22SensorDataId == data.Dh22SensorDataId);
+                if (existingSensor != null)
+                {
+                    existingSensor.Temperature = data.Temperature;
+                    existingSensor.Humidity = data.Humidity;
+                    existingSensor.Dh22SensorIdentifier = data.Dh22SensorIdentifier;
+                    _unitOfWork.TbDh22SensorData.Update(existingSensor);
+                }
+                else
+                {
+                    _unitOfWork.TbDh22SensorData.Add(data);
+                }
             }
 
             _unitOfWork.Save();
@@ -44,7 +53,7 @@ namespace TomatoHarvestAPI.Controllers
 
         #region GET All Dh22SensorData:
         [HttpGet]
-        [Route("Get")]
+        [Route("GetAllDh22SensorData")]
         public List<TbDh22SensorData> GetDh22SensorData()
         {
             return _unitOfWork.TbDh22SensorData.GetAll().ToList();
@@ -52,11 +61,10 @@ namespace TomatoHarvestAPI.Controllers
         #endregion
 
         #region GET Dh22SensorData By Id:
-        [HttpGet("{id}")]
-        [Route("Get/{id}")]
-        public TbDh22SensorData GetDh22SensorData(int dh22SensorDataId)
+        [HttpGet("GetDh22SensorData/{id}")]
+        public TbDh22SensorData GetDh22SensorData(int id)
         {
-            return _unitOfWork.TbDh22SensorData.Get(S => S.Dh22SensorDataId == dh22SensorDataId);
+            return _unitOfWork.TbDh22SensorData.Get(S => S.Dh22SensorDataId == id);
         }
         #endregion
 
@@ -65,21 +73,27 @@ namespace TomatoHarvestAPI.Controllers
         #region LdrSensorData
 
         #region PostLdrSensorData
-        [HttpPost("dh22")]
-        public IActionResult PostLdrSensorData([FromBody] TbLdrSensorData data, int ldrSensorDataId)
+        [HttpPost("PostLdrSensorData")]
+        public IActionResult PostLdrSensorData([FromBody] List<TbLdrSensorData> sensorDataList)
         {
-            if (data == null)
+            if (sensorDataList == null || sensorDataList.Count == 0)
             {
                 return BadRequest();
             }
-
-            var existingSensor = _unitOfWork.TbLdrSensorData.Get(s => s.LdrSensorDataId == ldrSensorDataId);
-            if (existingSensor != null)
+            foreach (var data in sensorDataList)
             {
-                existingSensor.LightIntensity = data.LightIntensity;
-                _unitOfWork.TbLdrSensorData.Update(existingSensor);
+                var existingSensor = _unitOfWork.TbLdrSensorData.Get(s => s.LdrSensorDataId == data.LdrSensorDataId);
+                if (existingSensor != null)
+                {
+                    existingSensor.LightIntensity = data.LightIntensity;
+                    existingSensor.LdrSensorIdentifier = data.LdrSensorIdentifier;
+                    _unitOfWork.TbLdrSensorData.Update(existingSensor);
+                }
+                else
+                {
+                    _unitOfWork.TbLdrSensorData.Add(data);
+                }
             }
-
             _unitOfWork.Save();
 
             return Ok();
@@ -87,9 +101,10 @@ namespace TomatoHarvestAPI.Controllers
 
         #endregion
 
+        
         #region GET All LdrSensorData:
         [HttpGet]
-        [Route("Get")]
+        [Route("GetAllLdrSensorData")]
         public List<TbLdrSensorData> GetLdrSensorData()
         {
             return _unitOfWork.TbLdrSensorData.GetAll().ToList();
@@ -97,11 +112,10 @@ namespace TomatoHarvestAPI.Controllers
         #endregion
 
         #region GET LdrSensorData By Id:
-        [HttpGet("{id}")]
-        [Route("Get/{id}")]
-        public TbLdrSensorData GetLdrSensorData(int ldrSensorDataId)
+        [HttpGet("GetLdrSensorData/{id}")]
+        public TbLdrSensorData GetLdrSensorData(int id)
         {
-            return _unitOfWork.TbLdrSensorData.Get(S => S.LdrSensorDataId == ldrSensorDataId);
+            return _unitOfWork.TbLdrSensorData.Get(S => S.LdrSensorDataId == id);
         }
         #endregion
 
@@ -110,30 +124,36 @@ namespace TomatoHarvestAPI.Controllers
         #region SoilMoistureSensorData
 
         #region PostSoilMoistureSensorData
-        [HttpPost("dh22")]
-        public IActionResult PostSoilMoistureSensorData([FromBody] TbSoilMoistureSensorData data, int soilMoistureSensorDataId)
+        [HttpPost("PostSoilMoistureSensorData")]
+        public IActionResult PostSoilMoistureSensorData([FromBody] List<TbSoilMoistureSensorData> sensorDataList)
         {
-            if (data == null)
+            if (sensorDataList == null || sensorDataList.Count == 0)
             {
                 return BadRequest();
             }
-
-            var existingSensor = _unitOfWork.TbSoilMoistureSensorData.Get(s => s.SoilMoistureSensorDataId == soilMoistureSensorDataId);
-            if (existingSensor != null)
+            foreach (var data in sensorDataList)
             {
-                existingSensor.SoilMoistureLevel = data.SoilMoistureLevel;
-                _unitOfWork.TbSoilMoistureSensorData.Update(existingSensor);
+                var existingSensor = _unitOfWork.TbSoilMoistureSensorData.Get(s => s.SoilMoistureSensorDataId == data.SoilMoistureSensorDataId);
+                if (existingSensor != null)
+                {
+                    existingSensor.SoilMoistureLevel = data.SoilMoistureLevel;
+                    existingSensor.SoilMoistureSensorIdentifier = data.SoilMoistureSensorIdentifier;
+                    _unitOfWork.TbSoilMoistureSensorData.Update(existingSensor);
+                }
+                {
+                    _unitOfWork.TbSoilMoistureSensorData.Add(data);
+                }
             }
-
             _unitOfWork.Save();
 
             return Ok();
         }
-        #endregion
 
+        #endregion
+        
         #region GET All SoilMoistureSensorData:
         [HttpGet]
-        [Route("Get")]
+        [Route("GetAllSoilMoistureSensorData")]
         public List<TbSoilMoistureSensorData> GetSoilMoistureSensorData()
         {
             return _unitOfWork.TbSoilMoistureSensorData.GetAll().ToList();
@@ -141,13 +161,13 @@ namespace TomatoHarvestAPI.Controllers
         #endregion
 
         #region GET SoilMoistureSensorData By Id:
-        [HttpGet("{id}")]
-        [Route("Get/{id}")]
-        public TbSoilMoistureSensorData GetSoilMoistureSensorData(int soilMoistureSensorDataId)
+        [HttpGet("GetSoilMoistureSensorData/{id}")]
+        public TbSoilMoistureSensorData GetSoilMoistureSensorData(int id)
         {
-            return _unitOfWork.TbSoilMoistureSensorData.Get(S => S.SoilMoistureSensorDataId == soilMoistureSensorDataId);
+            return _unitOfWork.TbSoilMoistureSensorData.Get(S => S.SoilMoistureSensorDataId == id);
         }
-        #endregion 
+        #endregion
+
 
         #endregion
 
