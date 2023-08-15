@@ -18,6 +18,7 @@ namespace TomatoHarvestAPI.Controllers
         #endregion
 
         #region Dh22SensorData
+
         #region PostDh22SensorData
         [HttpPost("dh22")]
         public IActionResult PostDh22SensorData([FromBody] TbDh22SensorData data, int dh22SensorDataId)
@@ -58,8 +59,8 @@ namespace TomatoHarvestAPI.Controllers
             return _unitOfWork.TbDh22SensorData.Get(S => S.Dh22SensorDataId == dh22SensorDataId);
         }
         #endregion
-        #endregion
 
+        #endregion
 
         #region LdrSensorData
 
@@ -105,7 +106,6 @@ namespace TomatoHarvestAPI.Controllers
         #endregion
 
         #endregion
-
 
         #region SoilMoistureSensorData
 
