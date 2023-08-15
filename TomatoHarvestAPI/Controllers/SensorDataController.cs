@@ -17,6 +17,7 @@ namespace TomatoHarvestAPI.Controllers
         }
         #endregion
 
+        #region Dh22SensorData
         #region PostDh22SensorData
         [HttpPost("dh22")]
         public IActionResult PostDh22SensorData([FromBody] TbDh22SensorData data, int dh22SensorDataId)
@@ -40,6 +41,28 @@ namespace TomatoHarvestAPI.Controllers
         }
         #endregion
 
+        #region GET All Dh22SensorData:
+        [HttpGet]
+        [Route("Get")]
+        public List<TbDh22SensorData> GetDh22SensorData()
+        {
+            return _unitOfWork.TbDh22SensorData.GetAll().ToList();
+        }
+        #endregion
+
+        #region GET Dh22SensorData By Id:
+        [HttpGet("{id}")]
+        [Route("Get/{id}")]
+        public TbDh22SensorData GetDh22SensorData(int dh22SensorDataId)
+        {
+            return _unitOfWork.TbDh22SensorData.Get(S => S.Dh22SensorDataId == dh22SensorDataId);
+        }
+        #endregion
+        #endregion
+
+
+        #region LdrSensorData
+
         #region PostLdrSensorData
         [HttpPost("dh22")]
         public IActionResult PostLdrSensorData([FromBody] TbLdrSensorData data, int ldrSensorDataId)
@@ -60,7 +83,31 @@ namespace TomatoHarvestAPI.Controllers
 
             return Ok();
         }
+
         #endregion
+
+        #region GET All LdrSensorData:
+        [HttpGet]
+        [Route("Get")]
+        public List<TbLdrSensorData> GetLdrSensorData()
+        {
+            return _unitOfWork.TbLdrSensorData.GetAll().ToList();
+        }
+        #endregion
+
+        #region GET LdrSensorData By Id:
+        [HttpGet("{id}")]
+        [Route("Get/{id}")]
+        public TbLdrSensorData GetLdrSensorData(int ldrSensorDataId)
+        {
+            return _unitOfWork.TbLdrSensorData.Get(S => S.LdrSensorDataId == ldrSensorDataId);
+        }
+        #endregion
+
+        #endregion
+
+
+        #region SoilMoistureSensorData
 
         #region PostSoilMoistureSensorData
         [HttpPost("dh22")]
@@ -83,5 +130,27 @@ namespace TomatoHarvestAPI.Controllers
             return Ok();
         }
         #endregion
+
+        #region GET All SoilMoistureSensorData:
+        [HttpGet]
+        [Route("Get")]
+        public List<TbSoilMoistureSensorData> GetSoilMoistureSensorData()
+        {
+            return _unitOfWork.TbSoilMoistureSensorData.GetAll().ToList();
+        }
+        #endregion
+
+        #region GET SoilMoistureSensorData By Id:
+        [HttpGet("{id}")]
+        [Route("Get/{id}")]
+        public TbSoilMoistureSensorData GetSoilMoistureSensorData(int soilMoistureSensorDataId)
+        {
+            return _unitOfWork.TbSoilMoistureSensorData.Get(S => S.SoilMoistureSensorDataId == soilMoistureSensorDataId);
+        }
+        #endregion 
+
+        #endregion
+
+
     }
 }
