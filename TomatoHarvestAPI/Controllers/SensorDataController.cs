@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TomatoHarvestAPI.DataAccess.Repository.IRepository;
 using TomatoHarvestAPI.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TomatoHarvestAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SensorDataController : ControllerBase
     {
         #region Dependency Injection

@@ -18,6 +18,7 @@ namespace TomatoHarvestAPI.DataAccess.Data
         public DbSet<TbDh22SensorData> TbDh22SensorDatas { get; set; }
         public DbSet<TbLdrSensorData> TbLdrSensorDatas { get; set; }
         public DbSet<TbSoilMoistureSensorData> TbSoilMoistureSensorDatas { get; set; }
+        public DbSet<TbUser> TbUsers { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

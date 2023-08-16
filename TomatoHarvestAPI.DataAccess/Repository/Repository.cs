@@ -7,10 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TomatoHarvestAPI.DataAccess.Data;
 using TomatoHarvestAPI.DataAccess.Repository.IRepository;
+using TomatoHarvestAPI.Models;
 
 namespace TomatoHarvestAPI.DataAccess.Repository
 {
-    public class Repository<T> : DataAccess.Repository.IRepository.IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         #region dependency injection
         private readonly ApplicationDbContext _db;
@@ -26,6 +27,13 @@ namespace TomatoHarvestAPI.DataAccess.Repository
         public void Add(T entity)
         {
             dbSet.Add(entity);
+        }
+        #endregion
+
+        #region AuthorizeUser
+        public TbUser AuthorizeUser(string userName, string password)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 

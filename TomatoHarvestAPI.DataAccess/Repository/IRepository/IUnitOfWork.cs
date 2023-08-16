@@ -12,6 +12,7 @@ namespace TomatoHarvestAPI.DataAccess.Repository.IRepository
         public IDh22SensorDataRepository TbDh22SensorData { get; }
         public ILdrSensorDataRepository TbLdrSensorData { get; }
         public ISoilMoistureSensorDataRepository TbSoilMoistureSensorData { get; }
+        public IUserRepository TbUser { get; }
 
     }
 }

@@ -15,7 +15,7 @@ namespace TomatoHarvestAPI.DataAccess.Repository
         public IDh22SensorDataRepository TbDh22SensorData { get; private set; }
         public ILdrSensorDataRepository TbLdrSensorData { get; private set; }
         public ISoilMoistureSensorDataRepository TbSoilMoistureSensorData { get; private set; }
-
+        public IUserRepository TbUser { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -23,6 +23,7 @@ namespace TomatoHarvestAPI.DataAccess.Repository
             TbDh22SensorData = new Dh22SensorDataRepository(_db);
             TbLdrSensorData = new LdrSensorDataRepository(_db);
             TbSoilMoistureSensorData = new SoilMoistureSensorDataRepository(_db);
+            TbUser = new UseraRepository(_db);
         }
         #endregion
 

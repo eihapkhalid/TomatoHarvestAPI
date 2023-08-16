@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using TomatoHarvestAPI.Models;
 
 namespace TomatoHarvestAPI.DataAccess.Repository.IRepository
 {
@@ -15,5 +16,7 @@ namespace TomatoHarvestAPI.DataAccess.Repository.IRepository
         void Add(T entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);
+
+        TbUser AuthorizeUser(string userName, string password);
     }
 }
