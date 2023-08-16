@@ -28,7 +28,7 @@ namespace TomatoHarvestAPI.Controllers
 
         #region Login function
         // POST https://localhost:7255/api/login
-        [HttpPost]
+        [HttpPost("Login")]
         // [Route("Login")] dont write this !
         [AllowAnonymous]
         public IActionResult Login([FromBody] TbUser user)

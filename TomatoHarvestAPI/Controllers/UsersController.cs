@@ -21,25 +21,24 @@ namespace TomatoHarvestAPI.Controllers
 
         #region GET All Users: api/<TransController>/Get
         [HttpGet]
-        [Route("Get")]
-        public List<TbUser> Get()
+        [Route("GetAllUsers")]
+        public List<TbUser> GetAllUsers()
         {
             return _unitOfWork.TbUser.GetAll().ToList();
         }
         #endregion
 
         #region GET User By Id: api/<TransController>/Get/5
-        [HttpGet("{id}")]
-        [Route("Get/{id}")]
-        public TbUser Get(int id)
+        [HttpGet("GetUserById/{id}")]
+        public TbUser GetUserById(int id)
         {
             return _unitOfWork.TbUser.Get(s=>s.UserId == id);
         }
         #endregion
 
         #region POST New or Edit user: api/<TransController>
-        [HttpPost]
-        public IActionResult Post([FromBody] TbUser user)
+        [HttpPost("PostUser")]
+        public IActionResult PostUser([FromBody] TbUser user)
         {
             if (user == null)
             {
@@ -58,7 +57,7 @@ namespace TomatoHarvestAPI.Controllers
             }
             else
             {
-                _unitOfWork.TbUser.Add(data);
+                _unitOfWork.TbUser.Add(user);
             }
 
             _unitOfWork.Save();
@@ -68,9 +67,8 @@ namespace TomatoHarvestAPI.Controllers
         #endregion
 
         #region POST Delte user: api/<TransController>/Delete
-        [HttpPost]
-        [Route("Delete")]
-        public IActionResult Delete([FromBody] TbUser user)
+        [HttpPost("DeleteUser")]
+        public IActionResult DeleteUser([FromBody] TbUser user)
         {
             if (user == null)
             {
