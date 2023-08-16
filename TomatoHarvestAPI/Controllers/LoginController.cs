@@ -6,6 +6,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using TomatoHarvestAPI.DataAccess.Repository.IRepository;
 using TomatoHarvestAPI.Models;
+using Microsoft.Extensions.Configuration; // استيراد المكتبة اللازمة
+
 
 namespace TomatoHarvestAPI.Controllers
 {
@@ -37,26 +39,26 @@ namespace TomatoHarvestAPI.Controllers
             var xuser = _unitOfWork.TbUser.AuthorizeUser(user.UserName, user.Password);
             if (xuser != null)
             {
-                var newToken = GenerateToken(user);
+                var newToken = GenerateToken(HttpContext.RequestServices.GetRequiredService<IConfiguration>(), user);
                 return Ok(new { token = newToken });//new obj has key named token with value newToken 
             }
             return response;
         }
         #endregion
 
-        #region GenerateToken Function :
-        string GenerateToken(TbUser user)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(configuration["Jwt: Issuer"],
-                configuration["Jwt: Audience"],
-                null,
-            expires: DateTime.Now.AddMinutes(120),
-            signingCredentials: credentials);
-            return new JwtSecurityTokenHandler().WriteToken(token);
+    #region GenerateToken Function:
+        string GenerateToken(IConfiguration configuration, TbUser user)
+            {
+                var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
+                var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+                var token = new JwtSecurityToken(configuration["Jwt:Issuer"],
+                    configuration["Jwt:Audience"],
+                    null,
+                    expires: DateTime.Now.AddMinutes(120),
+                    signingCredentials: credentials);
+                return new JwtSecurityTokenHandler().WriteToken(token);
+            }
+    #endregion
 
-        }
-        #endregion
-    }
+}
 }

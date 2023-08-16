@@ -76,6 +76,7 @@ namespace TomatoHarvestAPI.Controllers
             }
 
             _unitOfWork.TbUser.Remove(user);
+            _unitOfWork.Save();
             return Ok();
         }
         #endregion
